@@ -30,4 +30,4 @@ connectDB()
     console.log(`MONGO DB Connection failed !! ${err}`);
   });
 
-app.use("/auth", userRouter);
+app.use("/api/v1/users", userRouter);

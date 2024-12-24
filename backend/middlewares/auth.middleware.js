@@ -1,7 +1,6 @@
 import apiError from "../utils/apiError.JS";
-import asyncHandler from "../utils/asyncHandler.js";
+import asyncHandler from "../utils/asyncHandler";
 import jwt from "jsonwebtoken";
-
 
 export const verifyJWT = asyncHandler(
   async((req, _, next) => {
@@ -13,8 +12,8 @@ export const verifyJWT = asyncHandler(
       if (!token) {
         throw new apiError(401, "No access token found ");
       }
-// hume dekhna hai ki hum token ko decode kese karenge 
-      const decodedToken =  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+      // hume dekhna hai ki hum token ko decode kese karenge
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     } catch (error) {}
   })
 );
