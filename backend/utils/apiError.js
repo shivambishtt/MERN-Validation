@@ -6,11 +6,11 @@ class apiError extends Error {
     stack = ""
   ) {
     super(errMessage);
-    (this.errMessage = errMessage)
+    this.errMessage = errMessage;
     this.errStatus = errStatus;
-    ((this.data = null))((this.errors = errors))(
-      (this.success = false)
-    );
+    this.data = null;
+    this.errors = errors;
+    this.success = false;
 
     if (stack) {
       this.stack = stack;
