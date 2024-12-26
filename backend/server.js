@@ -4,6 +4,7 @@ import connectDB from "./db/index.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRouter from './routes/user.routes.js';
+import productRouter from './routes/product.routes.js'
 
 const app = express();
 
@@ -31,3 +32,4 @@ connectDB()
   });
 
 app.use("/api/v1/users", userRouter);
+app.use("api/v1/products", productRouter)
