@@ -17,7 +17,7 @@ import jwt from "jsonwebtoken";
     const user = await User.findById(decodedToken?._id).select(
       "-password -refreshToken"
     );
-
+  
     if (!user) {
       throw new apiError(401, "Invalid access token");
     }
