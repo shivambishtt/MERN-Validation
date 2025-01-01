@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { handleError } from '@/utils'
 
 function Signup() {
     const { register, handleSubmit } = useForm()
-    const [data, setData] = useState()
+    const [dataa, setData] = useState()
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -15,12 +16,26 @@ function Signup() {
         }))
     }
 
-    const handleSignup = (formdata) => {
-        const { name, email } = formdata
+    const handleSignup = async (data) => {
+        const { name, email } = data
         if (!name || !email) {
-            console.log("Both fields are required");
+            return handleError("Both fields are required")
         }
-        
+        try {
+            const URL = "/api/v1/users/register"
+            const response = await fetch(URL, {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(dataa)
+            })
+            const result = await response.json()
+            console.log(result);
+
+        } catch (error) {
+            handleError(error)
+        }
     }
     return (
         <div className='py-5 container flex items-center justify-center'>
