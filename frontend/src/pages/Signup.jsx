@@ -22,7 +22,7 @@ function Signup() {
             return handleError("Both fields are required")
         }
         try {
-            const URL = "/api/v1/users/register"
+            const URL = "http://localhost:5000/api/v1/users/register"
             const response = await fetch(URL, {
                 method: "POST",
                 headers: {
@@ -34,7 +34,8 @@ function Signup() {
             console.log(result);
 
         } catch (error) {
-            handleError(error)
+            console.log(error);
+            
         }
     }
     return (

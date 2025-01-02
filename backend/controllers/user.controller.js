@@ -24,9 +24,9 @@ const generateAccessTokenAndRefreshToken = async (userId)=>{
 }
 
 export const registerUser = asyncHandler(async (req, res) => {
-  const { fullName, username, email, password } = req.body;
+  const { fullName, email} = req.body;
 
-  if (!fullName || !email || !password || !username)
+  if (!fullName || !email )
     throw new apiError("All fields are required", 401);
 
   const userExists = await User.findOne({ email });
@@ -36,9 +36,9 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   const user = await User.create({
     fullName,
-    username,
+    // username,
     email,
-    password,
+    // password,
   });
 
   const createdUser = await User.findById(user._id).select(
